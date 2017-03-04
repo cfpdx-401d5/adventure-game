@@ -1,0 +1,14 @@
+Load screen
+
+- Picture of the top of the Cliffs of Insanity
+- Sceen title
+- Paragraph with scene text
+- Boxes with each choice/button
+
+- on click handler, sceen changes (either new sceen or death image)
+
+- React elements
+  - sceen title
+  - image tag
+  - buttons/choices
+  - sceen text
