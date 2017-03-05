@@ -4,7 +4,7 @@ const plot = require('./plot.js');
 //import './index.css';
 
 function Choices(props) {
-    console.log('props: ', props);
+    console.log('choices props: ', props);
     const buttons = props.value.map(item => {
         return (<li key={item.id}>
             <button id={item.id}>{item.name}</button>
@@ -16,6 +16,7 @@ function Choices(props) {
 }
 
 function Story(props) {
+    console.log('story props: ', props);
     return (
         <div>
             <p id={props.story.id}>{props.story.plot}</p>
