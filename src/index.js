@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-const plot = require('./plot.js');
+const nextMove = require('./plot.js');
 //import './index.css';
 
 function Choices(props) {
@@ -15,26 +15,39 @@ function Choices(props) {
     );
 }
 
-function Story(props) {
-    console.log('story props: ', props);
-    return (
+class Story extends React.Component {
+    render (props) {
+        console.log('PROPS', this.props);
+        return (
         <div>
-            <p id={props.story.id}>{props.story.plot}</p>
-            <img src={props.story.image} alt='from the Princess Bride'/>
+            <p id={this.props.id}>{this.props.plot}</p>
+            <img src={this.props.img} alt='from the Princess Bride'/>
             <ul>
-                <Choices value={props.story.choices} />
+                <Choices value={this.props.choices} />
             </ul>
         </div>
-    );
+        );
+    }
 }
 
-function Game() {
-    const state = plot(4);
-    return (
+class Game extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { 
+            statePlot: nextMove(4)
+        }
+    }
+    render() {
+        const plot = this.state.statePlot.plot;
+        const id = this.state.statePlot.id;
+        const img = this.state.statePlot.image;
+        const choices = this.state.statePlot.choices;
+        console.log('state', this.state);
+        return (
         <div>
-            <Story story={state[0]} />
+            <Story plot={plot} id={id} img={img} choices={choices} />
         </div>
-    );
+    );}
 }
 
 ReactDOM.render(

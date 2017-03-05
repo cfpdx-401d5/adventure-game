@@ -31,11 +31,12 @@ const fightInigo = {
 const plotItems = [die, fightInigo, fightLeftHand, fightRightHand];
 
 function nextMove(props) {
-    return plotItems.filter(item => {
+    const plotConst = plotItems.filter(item => {
         if (props === item.id) {
             return item;
         }
     });
+    return plotConst[0];
 }
 
 module.exports = nextMove;
