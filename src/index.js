@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
 var userAnswerArr = [];
+var answerArr = ['A', 'B', 'B'];
+var idx = 0;
 
 const rooms = [
   {
@@ -18,50 +20,93 @@ const rooms = [
     message: 'You are in this room3 and your choices are: A || B.',
   }
 ];
+const finalRoom = {
+  // message: ''
+};
 
-let propKey;
-function FnButton(props) {
-  console.log('fnbtn', props.akey);
-
-  propKey = props.akey;
-
-  return (
-    <button onClick={onClicky(props.akey)}>here be a button</button>
-  );
-}
-
+// MakeRoom(idx);
 
 function RoomMessage(props) {
-  
+  console.log('indx in rom msag', props.room.message);
+  return <p>{props.room.message}</p>
+}
+
+function MakeRoom(props) {
+  console.log('idx in mkrom', idx);
   return (
     <div>
-      <p>{props.room.message}</p>
-      <FnButton akey='a' />
-      <FnButton akey='b' />
+      <RoomMessage room={rooms[idx]} />
+      <Button value='A' />
+      <Button value='B' />
     </div>
   );
 }
 
-var idx = 0;
-
-function onClicky(e) {
-  e.preventDefault();
-  
-  idx++;
-  console.log('idx is..', idx);
-  console.log('inside onclicky', propKey);
-  // userAnswerArr.push(this.props.akey);
-  // console.log('inside btn fn', userAnswerArr);
-
-  // console.log('look for a key', this.other);
-
-  ReactDOM.render(
-    <RoomMessage room={rooms[idx]} />,
-    document.getElementById('root')
+function MakeFinalRoom(props) {
+  return (
+    <div>
+      <p>Did you win?</p>
+      <Button value='fight monster' />;
+  </div>
   );
 }
 
-ReactDOM.render(
-  <RoomMessage room={rooms[idx]} />,
-  document.getElementById('root')
-);
+function WinOrLose(props) {
+  console.log(props.decision);
+  if (props.decision) {
+    return <p>You win!</p>;
+  }
+  else {
+    return <p>You lose.</p>;
+  }
+}
+
+class Button extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasWon: true };
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(e) {
+    e.preventDefault();
+
+    if (userAnswerArr[idx] !== answerArr[idx]) { this.setState({ hasWon: false }) }
+
+    if (userAnswerArr.length < answerArr.length) {
+      userAnswerArr.push(this.props.value);
+      idx++;
+      console.log('userArr ', userAnswerArr);
+      console.log('state is, ', this.state.hasWon);
+      ReactDOM.render(
+        <MakeRoom />,
+        document.getElementById('root')
+      );
+    }
+    else if (userAnswerArr.length === answerArr.length) {
+      ReactDOM.render(
+        <MakeFinalRoom />,
+        document.getElementById('root')
+      );
+    }
+    else {
+
+      ReactDOM.render(
+        <WinOrLose decision={this.state.hasWon} />,
+        document.getElementById('root')
+      );
+    }
+
+  };
+
+  render() {
+    return <button onClick={this.handleClick}>Choose {this.props.value}</button>;
+  };
+}
+
+if(!userAnswerArr.length)
+  {ReactDOM.render(
+    <MakeRoom />,
+    document.getElementById('root')
+  );
+}
