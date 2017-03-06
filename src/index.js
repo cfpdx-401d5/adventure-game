@@ -33,8 +33,11 @@ class Game extends React.Component {
     constructor(props) {
         super(props);
         this.state = { 
-            statePlot: nextMove(4)
+            statePlot: nextMove(6)
         }
+    }
+    handleClick() {
+        let statePlot = this.state.statePlot
     }
     render() {
         const plot = this.state.statePlot.plot;
