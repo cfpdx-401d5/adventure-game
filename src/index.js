@@ -25,8 +25,6 @@ class Game extends React.Component {
     } 
 
     handleClick(value) {
-        console.log(value);
-        console.log('STATE', this.state);
         if (value === 42) {
             this.setState({
                 statePlot: nextMove(1)
