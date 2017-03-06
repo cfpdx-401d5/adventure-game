@@ -15,12 +15,13 @@ the player defeats or interacts with.
 
 * No need to try and persist the data (though you can put on localStorage if you want)
 
-* Test your components with snapshot testing
-
 * You haven't yet learned how to use things like a router or some of the higher level state management
 techniques available in React. Just use what you know plus JavaScript know-how to orchestrate changes through the game.
 
 * The goal is to jump into React and try and build something more complex than first assignment.
+
+## Bonus
+* Test your components with snapshot testing
 
 ## Rubric
 * Functionally Correct (not buggy) *4pts*
