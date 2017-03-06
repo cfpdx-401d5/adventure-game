@@ -33,7 +33,6 @@ class Game extends React.Component {
                 statePlot: nextMove(value)
             });
         }
-        
     }
     
     render() {
