@@ -4,10 +4,9 @@ const nextMove = require('./plot.js');
 //import './index.css';
 
 function Choices(props) {
-    console.log(props);
     const buttons = props.value.map(item => {
         return (
-            <button key={item.id} onClick={props.onClick}>{item.name}</button>
+            <button key={item.id} onClick={() => props.onClick(item.id)}>{item.name}</button>
         );
     });
     return (
@@ -24,6 +23,7 @@ class Game extends React.Component {
         };
         this.handleClick = this.handleClick.bind(this);
     } 
+
 
     handleClick(value) {
         console.log(value);
@@ -52,3 +52,11 @@ ReactDOM.render(
   <Game start={1}/>,
   document.getElementById('root')
 );
+
+Choices.propTypes = {
+    value: React.PropTypes.array,
+};
+
+Game.constructor.propTypes = {
+    start: React.PropTypes.string,
+};
