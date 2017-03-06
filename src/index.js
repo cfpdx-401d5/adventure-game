@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 const nextMove = require('./plot.js');
-//import './index.css';
+import './index.css';
 
 function Choices(props) {
     const buttons = props.value.map(item => {
