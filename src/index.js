@@ -4,10 +4,9 @@ const nextMove = require('./plot.js');
 //import './index.css';
 
 function Choices(props) {
-    console.log(props);
     const buttons = props.value.map(item => {
         return (
-            <button key={item.id} onClick={props.onClick}>{item.name}</button>
+            <button key={item.id} onClick={() => props.onClick(item.id)}>{item.name}</button>
         );
     });
     return (
@@ -21,15 +20,18 @@ class Game extends React.Component {
         this.state = { 
             statePlot: nextMove(props.start)
         };
+        this.handleClick = this.handleClick.bind(this);
     }
 
     handleClick(value) {
+        console.log('value: ', value);
         this.setState({
             statePlot: nextMove(value)
         });
     }
     
     render() {
+        console.log('statePlot: ', this.state.statePlot);
         const plot = this.state.statePlot.plot;
         const id = this.state.statePlot.id;
         const img = this.state.statePlot.image;
@@ -48,3 +50,11 @@ ReactDOM.render(
   <Game start={1}/>,
   document.getElementById('root')
 );
+
+Choices.propTypes = {
+    value: React.PropTypes.string,
+};
+
+Game.constructor.propTypes = {
+    start: React.PropTypes.string,
+};
