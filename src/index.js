@@ -6,7 +6,7 @@ import './index.css';
 function Choices(props) {
     const buttons = props.value.map(item => {
         return (
-            <button key={item.id} onClick={() => props.onClick(item.id)}>{item.name}</button>
+            <button className='buttons' key={item.id} onClick={() => props.onClick(item.id)}>{item.name}</button>
         );
     });
     return (
@@ -23,7 +23,6 @@ class Game extends React.Component {
         };
         this.handleClick = this.handleClick.bind(this);
     } 
-
 
     handleClick(value) {
         console.log(value);
@@ -52,7 +51,7 @@ class Game extends React.Component {
         const img = this.state.statePlot.image;
         const choices = this.state.statePlot.choices;
         return (
-        <div>
+        <div className='react'>
             {this.plotComponent(plot)}
             <img src={img} alt='from the Princess Bride'/>
             <Choices value={choices} onClick={this.handleClick} />

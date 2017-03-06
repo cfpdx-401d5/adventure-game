@@ -17,13 +17,36 @@ h1 {
 img {
   display: block;
   margin: 0 auto;
+  object-fit: contain;
+  width: 100%;
+}
+
+ul {
+  text-align: center;
+}
+
+.buttons {
+  background-color: #666699;
+  font-family: 'VT323', monospace;;
+  font-size: 20px;
+  color: #14fdce;
+  border-radius: 25%;
+  border-color: #14fdce; 
+  padding: 10px;
+  margin: 0 2em;
+}
+
+.buttons:hover {
+    background-color: #031e11;
+}
+
+.buttons:focus {
+  outline: none;
 }
 
 .output {
   animation: crt-output 10ms infinite; 
   background-color: #031e11;
-  overflow: scroll;
-  position: absolute;
   padding: 3rem 2rem;
   pointer-events: auto;
   text-shadow: 0rem 0.2rem 1rem lighten(#031e11,20%);
@@ -45,7 +68,6 @@ img {
   );
   background-size: 100% 0.3rem;
   border-radius: 2rem;
-  position: absolute;
 }
 
 .glow {
@@ -60,6 +82,5 @@ img {
   filter: blur(10rem) opacity(0.1);
   opacity: 0.15;
   pointer-events: none; 
-  position: fixed;
 }
 
