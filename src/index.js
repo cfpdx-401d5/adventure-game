@@ -19,11 +19,15 @@ class Game extends React.Component {
         super(props);
         this.state = { 
             statePlot: nextMove(props.start)
+            
         };
         this.handleClick = this.handleClick.bind(this);
-    }
+    } 
+
 
     handleClick(value) {
+        console.log(value);
+        console.log('STATE', this.state);
         if (value === 42) {
             this.setState({
                 statePlot: nextMove(1)
