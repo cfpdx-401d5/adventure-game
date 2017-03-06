@@ -123,7 +123,7 @@ const winStage1 = {
     plot: 'You have won the first stage in Rescue the Princess. You will have to wait for the second release to play Stage 2!'
 };
 
-const plotItems = [die, fightInigo, fightLeftHand, fightRightHand];
+const plotItems = [die, winStage1, inigoRope, acceptRope, refuseRope, talkInigo, reasonInigo, lovePersuade, lovePersuadeFail, revengePersuade, revengePersuadeSuccess, killInigo, haveMercy, fightInigo, fightLeftHand, fightRightHand];
 
 function nextMove(props) {
     const plotConst = plotItems.filter(item => {
