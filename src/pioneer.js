@@ -1,24 +1,25 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 
 export default class PioneerScene extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {};
-    }
-    getDrink(e) {
-        e.preventDefault();
-            alert('You had a latte with your friend and got up with the most recent gossip. Your friend drives you to the Zoo just in time for your daughter\'s party! \n (Close out of this and click Go to Zoo button)');
-    }
-    goToTheZoo(e) {
-        e.preventDefault();
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+  getDrink(e) {
+    e.preventDefault();
+    alert('You had a latte with your friend and got up with the most recent gossip. Your friend drives you to the Zoo just in time for your daughter\'s party! \n (Close out of this and click Go to Zoo button)');
+  }
+  goToTheZoo(e) {
+    e.preventDefault();
 
-        ReactDOM.render(
-            <Zoo />,
-        document.getElementById('root')
-    )
+    // ReactDOM.render(
+    //         <Zoo />,
+    //     document.getElementById('root')
+    // )
   }        
-    render() {
-        return (
+  render() {
+    return (
             <div>
                 <h1>Welcome to Pioneer Square!</h1>
                 <img role='presentation' src='pioneer-square.jpg' />
@@ -27,7 +28,7 @@ export default class PioneerScene extends Component {
                 <button onClick={this.getDrink}>Have a drink</button>
             </div>
         )
-    }
+  }
 }
 
 
