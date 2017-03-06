@@ -4,29 +4,15 @@ const nextMove = require('./plot.js');
 //import './index.css';
 
 function Choices(props) {
-    console.log('choice props: ', props);
+    console.log(props);
     const buttons = props.value.map(item => {
-        return (<li key={item.id}>
-            <button id={item.id} onClick={() => props.onClick(item.id)}>{item.name}</button>
-        </li>);
+        return (
+            <button key={item.id} onClick={props.onClick}>{item.name}</button>
+        );
     });
     return (
         <ul>{buttons}</ul>
     );
-}
-
-class Story extends React.Component {
-    render(props) {
-        return (
-        <div>
-            <p id={this.props.id}>{this.props.plot}</p>
-            <img src={this.props.img} alt='from the Princess Bride'/>
-            <ul>
-                <Choices value={this.props.choices} onclick={() => this.props.onClick()} />
-            </ul>
-        </div>
-        );
-    }
 }
 
 class Game extends React.Component {
@@ -42,7 +28,7 @@ class Game extends React.Component {
             statePlot: nextMove(value)
         });
     }
-
+    
     render() {
         const plot = this.state.statePlot.plot;
         const id = this.state.statePlot.id;
@@ -50,13 +36,15 @@ class Game extends React.Component {
         const choices = this.state.statePlot.choices;
         return (
         <div>
-            <Story plot={plot} id={id} img={img} choices={choices} onClick={() => this.handleClick()} />
+            <p id={id}>{plot}</p>
+            <img src={img} alt='from the Princess Bride'/>
+            <Choices value={choices} onClick={this.handleClick} />
         </div>
         );
     }
 }
 
 ReactDOM.render(
-  <Game start={4}/>,
+  <Game start={1}/>,
   document.getElementById('root')
 );
