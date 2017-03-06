@@ -1,12 +1,47 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import PioneerScene from './pioneer';
+// import PioneerScene from './pioneer';
 // import App from './App'; // in _forReference folder
 // import './index.css';  // in _forReference folder
+
+function Scene (props) {
+  return (
+    <div>
+      {props.scene.title}
+    </div>
+  )
+}
+
+class GameApp extends Component {
+  constructor (props) {
+    super(props);
+    this.state = {
+      sceneIndex: 0,
+      scenes: [
+        {
+          title: 'Pioneer Square'
+        },
+        {
+          title: 'Oregon Zoo'
+        }
+      ]
+    }
+  }
+  render() {
+    return (
+      <div>
+        <Scene scene={this.state.scenes[this.state.sceneIndex]}/>
+      </div>
+    )
+  }
+}
+
 ReactDOM.render(
-  <PioneerScene />,
+  <GameApp />,
   document.getElementById('root')
 );
+
+
 //turning header into component
 /*function Pioneer(props) {
   function goToTheZoo(e) {
@@ -32,7 +67,7 @@ ReactDOM.render(
       <button onClick={getDrink}>Have a drink</button>
   </div>
   )
-}*/
+}
 
 function Zoo(props) {
   function goToCouncilCrest(e) {
@@ -67,4 +102,4 @@ function CouncilCrest (props) {
       <p>What an exciting day you had. Your car is ready to pick up from the mechanics in time for work tomorrow and everything works out okay.</p>
     </div>
   )
-}
+}*/
