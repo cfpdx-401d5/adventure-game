@@ -24,14 +24,12 @@ class Game extends React.Component {
     }
 
     handleClick(value) {
-        console.log('value: ', value);
         this.setState({
             statePlot: nextMove(value)
         });
     }
     
     render() {
-        console.log('statePlot: ', this.state.statePlot);
         const plot = this.state.statePlot.plot;
         const id = this.state.statePlot.id;
         const img = this.state.statePlot.image;
@@ -52,7 +50,7 @@ ReactDOM.render(
 );
 
 Choices.propTypes = {
-    value: React.PropTypes.string,
+    value: React.PropTypes.array,
 };
 
 Game.constructor.propTypes = {
