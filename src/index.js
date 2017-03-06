@@ -10,44 +10,37 @@ const rooms = [
   {
     roomName: 'Room1',
     message: 'You are in this room1 and your choices are: A || B.',
+    buttonA: 'A',
+    buttonB: 'B'
   },
   {
     roomName: 'Room2',
     message: 'You are in this room2 and your choices are: A || B.',
+    buttonA: 'A',
+    buttonB: 'B'
   },
   {
     roomName: 'Room3',
     message: 'You are in this room3 and your choices are: A || B.',
-  }
+    buttonA: 'A',
+    buttonB: 'B'
+  },
+  {
+    roomName: 'FinalRoom',
+    message: 'Did you win?',
+    buttonA: 'Fight monster',
+    buttonB: 'Run away'
+  },
 ];
-const finalRoom = {
-  // message: ''
-};
-
-// MakeRoom(idx);
-
-function RoomMessage(props) {
-  console.log('indx in rom msag', props.room.message);
-  return <p>{props.room.message}</p>
-}
 
 function MakeRoom(props) {
   console.log('idx in mkrom', idx);
   return (
     <div>
-      <RoomMessage room={rooms[idx]} />
-      <Button value='A' />
-      <Button value='B' />
+      <p>{props.rooms[this.state.idx].message}</p>
+      <Button value={props.room.buttonA} />
+      <Button value={props.room.buttonB} />
     </div>
-  );
-}
-
-function MakeFinalRoom(props) {
-  return (
-    <div>
-      <p>Did you win?</p>
-      <Button value='fight monster' />;
-  </div>
   );
 }
 
@@ -65,38 +58,40 @@ class Button extends React.Component {
   constructor(props) {
     super(props);
     this.state = { hasWon: true };
+    console.log('constructor', this.state.hasWon)
     this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick(e) {
     e.preventDefault();
-
+    
+    userAnswerArr.push(this.props.value);
+    
     if (userAnswerArr[idx] !== answerArr[idx]) { this.setState({ hasWon: false }) }
+    console.log("userAnsArr", userAnswerArr[idx])
+    console.log("AnsArr", answerArr[idx])
+    console.log(this.state.hasWon)
+    idx++;
 
-    if (userAnswerArr.length < answerArr.length) {
-      userAnswerArr.push(this.props.value);
-      idx++;
-      console.log('userArr ', userAnswerArr);
-      console.log('state is, ', this.state.hasWon);
-      ReactDOM.render(
-        <MakeRoom />,
-        document.getElementById('root')
-      );
-    }
-    else if (userAnswerArr.length === answerArr.length) {
-      ReactDOM.render(
-        <MakeFinalRoom />,
-        document.getElementById('root')
-      );
-    }
-    else {
 
-      ReactDOM.render(
-        <WinOrLose decision={this.state.hasWon} />,
-        document.getElementById('root')
-      );
-    }
+    if(idx < answerArr.length) {
+      // ReactDOM.render(
+      //   <MakeRoom />,
+      //   document.getElementById('root')
+      // );
 
+    } else if (idx === answerArr.length) {
+      // ReactDOM.render(
+      //   <MakeFinalRoom />,
+      //   document.getElementById('root')
+      // );
+
+    } else {
+      // ReactDOM.render(
+      //   <WinOrLose decision={this.state.hasWon} />,
+      //   document.getElementById('root')
+      // );
+    }
   };
 
   render() {
@@ -104,9 +99,8 @@ class Button extends React.Component {
   };
 }
 
-if(!userAnswerArr.length)
-  {ReactDOM.render(
-    <MakeRoom />,
+
+ReactDOM.render(
+    <Button rooms={rooms}/>,
     document.getElementById('root')
   );
-}
