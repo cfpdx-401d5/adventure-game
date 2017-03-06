@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-var userAnswerArr = [];
+/*var userAnswerArr = [];
 var answerArr = ['A', 'B', 'B'];
 var idx = 0;
 
@@ -61,7 +61,7 @@ function WinOrLose(props) {
   }
 }
 
-class Button extends React.Component {
+class Button extends Component {
   constructor(props) {
     super(props);
     this.state = { hasWon: true };
@@ -71,7 +71,7 @@ class Button extends React.Component {
   handleClick(e) {
     e.preventDefault();
 
-    if (userAnswerArr[idx] !== answerArr[idx]) { this.setState({ hasWon: false }) }
+    if (userAnswerArr[idx] !== answerArr[idx]) { this.setState({ hasWon: false }); }
 
     if (userAnswerArr.length < answerArr.length) {
       userAnswerArr.push(this.props.value);
@@ -109,4 +109,22 @@ if(!userAnswerArr.length)
     <MakeRoom />,
     document.getElementById('root')
   );
+}*/
+
+
+class Button extends Component {
+  constructor (props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(e) {
+    e.preventDefault();
+
+  }
 }
+
+ReactDOM.render(
+  <button>click</button>,
+  document.getElementById('root')
+);
