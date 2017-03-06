@@ -1,15 +1,23 @@
+const playAgain = {
+    id: 42,
+    name: 'Play Again?',
+    plot: 'Care to play again?',
+};
+
 const die = {
     id: 3,
     name: 'die',
     image: 'https://www.colourbox.com/preview/11617094-red-skull-and-crossbones.jpg',
-    plot: 'You chose poorly.  You die.'
+    plot: 'You chose poorly.  You die.',
+    choices: [playAgain]
 };
 
 const winStage1 = {
     id: 7,
     name: 'WIN!',
     image: 'https://s-media-cache-ak0.pinimg.com/originals/f5/8a/86/f58a86065750d032b1683bae64d203f0.jpg',
-    plot: 'You have won the first stage in Rescue the Princess. You will have to wait for the second release to play Stage 2!'
+    plot: 'You have won the first stage in Rescue the Princess. You will have to wait for the second release to play Stage 2!',
+    choices: [playAgain]
 };
 
 const fightLeftHand = {
@@ -93,7 +101,7 @@ const fightInigo = {
 };
 
 const talkInigo = {
-    id : 2,
+    id: 2,
     name: 'Talk to Inigo',
     image: 'https://s-media-cache-ak0.pinimg.com/564x/38/4e/17/384e17aa169dd085f89b323800269739.jpg',
     plot: 'The Spaniard is as good as his word, and you safely reach the top of the cliffs. Once there, he even lets you regain your breath. While you recuperate from your climb, the Spaniard asks if you are, perchance, a six-fingered man. You respond: "Do you always begin conversations this way?" To which he launches into the tale of his youth: as it turns out, a six-fingered man hired the Spaniard\'s father, a peerless swordsmith, to craft him a blade. The six-fingered man, rather than pay fair market price, chose instead to murder the Spaniard\'s father in front of his own son, and leave the Spaniard himself with an impressive scar. The Spaniard\'s intent, since that day more than twenty years ago, has been solely to hone his swordcraft and track down the six-fingered man so that he may say to the man, "Hello. My name is Inigo Montoya. You Killed my father. Prepare to die." You say: "Well, I certainly hope you find him someday", and the Spaniard, in response, asks if you are ready to fight.',
@@ -108,7 +116,7 @@ const acceptRope = {
     choices: [talkInigo]
 };
 
-const refuseRope ={
+const refuseRope = {
     id: 0.2,
     name: 'Refuse the Rope',
     image: 'https://s-media-cache-ak0.pinimg.com/736x/3f/76/ac/3f76ac69ccd35ad10ef4db6c5f850df9.jpg',
