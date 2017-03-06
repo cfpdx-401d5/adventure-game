@@ -35,14 +35,21 @@ class Game extends React.Component {
         }
     }
     
+    createMarkUp(text) {
+        return { __html: text };
+    }
+
+    plotComponent(text) {
+        return <p dangerouslySetInnerHTML={this.createMarkUp(text)} />;
+    }
+
     render() {
         const plot = this.state.statePlot.plot;
-        const id = this.state.statePlot.id;
         const img = this.state.statePlot.image;
         const choices = this.state.statePlot.choices;
         return (
         <div>
-            <p id={id}>{plot}</p>
+            {this.plotComponent(plot)}
             <img src={img} alt='from the Princess Bride'/>
             <Choices value={choices} onClick={this.handleClick} />
         </div>
