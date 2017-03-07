@@ -107,8 +107,8 @@ ReactDOM.render(
 }*/
 
 
-class Button extends Component {
-  constructor (props) {
+class Game extends Component {
+  constructor(props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);
   }
@@ -117,9 +117,17 @@ class Button extends Component {
     e.preventDefault();
 
   }
+
+  render() {
+    return (
+      <div>Adventure game
+
+    </div>
+    );
+  }
 }
 
 ReactDOM.render(
-  <button>click</button>,
+  <Game />,
   document.getElementById('root')
 );
