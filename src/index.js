@@ -110,6 +110,35 @@ ReactDOM.render(
 class Game extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      idx: 0,
+      rooms: [
+        {
+          roomName: 'Room1',
+          message: 'You are in this room1 and your choices are: A || B.',
+          buttonA: 'A',
+          buttonB: 'B'
+        },
+        {
+          roomName: 'Room2',
+          message: 'You are in this room2 and your choices are: A || B.',
+          buttonA: 'A',
+          buttonB: 'B'
+        },
+        {
+          roomName: 'Room3',
+          message: 'You are in this room3 and your choices are: A || B.',
+          buttonA: 'A',
+          buttonB: 'B'
+        },
+        {
+          roomName: 'FinalRoom',
+          message: 'Did you win?',
+          buttonA: 'Fight monster',
+          buttonB: 'Run away'
+        },
+      ],
+    };
     this.handleClick = this.handleClick.bind(this);
   }
 
@@ -120,12 +149,14 @@ class Game extends Component {
 
   render() {
     return (
-      <div>Adventure game
+      <div>{this.state.rooms[1].message}
 
-    </div>
+      </div>
     );
   }
 }
+
+
 
 ReactDOM.render(
   <Game />,
