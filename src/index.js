@@ -111,8 +111,10 @@ class Game extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      playerArray: [],
       idx: 0,
+      hasWon: true,
+      playerArray: [],
+      answerArray: ['A', 'B', 'A', 'Fight Monster'],
       rooms: [
         {
           roomName: 'Room1',
@@ -145,17 +147,25 @@ class Game extends Component {
 
   clickHandler(clickValue) {
     // e.preventDefault();
+    console.log('before click', this.state.idx);
+    // let updatedArr = this.state.playerArray.push(clickValue);
     this.setState({ idx: this.state.idx + 1 });
-    this.setState({ playerArray: this.state.playerArray.push(clickValue) });
+    // this.setState({ playerArray: updatedArr });
     console.log('playerArr is', this.state.playerArray);
+    console.log('after click', this.state.idx);
+
+    if (this.state.playerArray[this.state.idx] !== this.state.answerArray[this.state.idx]) {
+      this.setState({ hasWon: false });
+    }
+
   }
 
   render() {
-    return (
-      <div>{this.state.rooms[3].message}
-        <MakeRoom clickHandler={this.clickHandler} room={this.state.rooms} index={this.state.idx}/>
-      </div>
-    );
+    if (this.state.idx < 4) {
+      return <MakeRoom clickHandler={this.clickHandler} room={this.state.rooms} index={this.state.idx} />;
+    } else {
+      return <WinOrLosePage result={this.hasWon}/>;
+    } 
   }
 }
 
@@ -165,13 +175,22 @@ function MakeRoom(props) {
     <div>
       <p>{props.room[props.index].message}</p>
       <button onClick={() => {props.clickHandler(clickValue.buttonA);}}> 
-        button A
+        {clickValue.buttonA}
       </button>
       <button onClick={() => {props.clickHandler(clickValue.buttonB);}}>
-        button B
+        {clickValue.buttonB}
       </button>
     </div>
   );
+}
+
+function WinOrLosePage(props) {
+  let results; 
+
+  if (props.result) results = <p>You win!</p>;
+  else results = <p>You lose :(</p>;
+
+  return results;
 }
 
 
