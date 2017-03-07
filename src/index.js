@@ -160,14 +160,16 @@ class Game extends Component {
 }
 
 function MakeRoom(props) {
-  let clickValue = props.room[props.index].buttonA;
+  let clickValue = props.room[props.index];
   return (
     <div>
       <p>{props.room[props.index].message}</p>
-      <button onClick={() => {props.clickHandler(clickValue);}}> 
+      <button onClick={() => {props.clickHandler(clickValue.buttonA);}}> 
         button A
       </button>
-      {/*<button clickValue={props.room[props.index].buttonB}>button B</button>*/}
+      <button onClick={() => {props.clickHandler(clickValue.buttonB);}}>
+        button B
+      </button>
     </div>
   );
 }
