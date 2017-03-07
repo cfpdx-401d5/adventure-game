@@ -111,6 +111,7 @@ class Game extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      playerArray: [],
       idx: 0,
       rooms: [
         {
@@ -139,29 +140,36 @@ class Game extends Component {
         },
       ],
     };
-    this.handleClick = this.handleClick.bind(this);
+    this.clickHandler = this.clickHandler.bind(this);
   }
 
-  handleClick(e) {
-    e.preventDefault();
-
+  clickHandler(clickValue) {
+    // e.preventDefault();
+    this.setState({ idx: this.state.idx + 1 });
+    // this.setState(this.state.playerArray.push(clickValue));
+    console.log('idx is', this.state.idx);
+    console.log('playerarr is', this.state.playerArray);
   }
 
   render() {
     return (
       <div>{this.state.rooms[3].message}
-        <MakeRoom room={this.state.rooms} index={this.state.idx}/>
+        <MakeRoom clickHandler={this.clickHandler} room={this.state.rooms} index={this.state.idx}/>
       </div>
     );
   }
 }
 
 function MakeRoom(props) {
+  let clickValue = props.room[props.index].buttonA;
+  console.log('cH fxn ', props.clickHandler);
   return (
     <div>
       <p>{props.room[props.index].message}</p>
-      <button value={props.room[props.index].buttonA}>button A</button>
-      <button value={props.room[props.index].buttonB}>button B</button>
+      <button onClick={() => {props.clickHandler(clickValue);}}> 
+        button A
+      </button>
+      {/*<button clickValue={props.room[props.index].buttonB}>button B</button>*/}
     </div>
   );
 }
