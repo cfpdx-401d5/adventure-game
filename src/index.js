@@ -146,9 +146,8 @@ class Game extends Component {
   clickHandler(clickValue) {
     // e.preventDefault();
     this.setState({ idx: this.state.idx + 1 });
-    // this.setState(this.state.playerArray.push(clickValue));
-    console.log('idx is', this.state.idx);
-    console.log('playerarr is', this.state.playerArray);
+    this.setState({ playerArray: this.state.playerArray.push(clickValue) });
+    console.log('playerArr is', this.state.playerArray);
   }
 
   render() {
@@ -162,7 +161,6 @@ class Game extends Component {
 
 function MakeRoom(props) {
   let clickValue = props.room[props.index].buttonA;
-  console.log('cH fxn ', props.clickHandler);
   return (
     <div>
       <p>{props.room[props.index].message}</p>
