@@ -149,13 +149,22 @@ class Game extends Component {
 
   render() {
     return (
-      <div>{this.state.rooms[1].message}
-
+      <div>{this.state.rooms[3].message}
+        <MakeRoom room={this.state.rooms} index={this.state.idx}/>
       </div>
     );
   }
 }
 
+function MakeRoom(props) {
+  return (
+    <div>
+      <p>{props.room[props.index].message}</p>
+      <button value={props.room[props.index].buttonA}>button A</button>
+      <button value={props.room[props.index].buttonB}>button B</button>
+    </div>
+  );
+}
 
 
 ReactDOM.render(
