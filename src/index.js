@@ -147,16 +147,27 @@ class Game extends Component {
 
   clickHandler(clickValue) {
     // e.preventDefault();
+    console.log('clickv', clickValue);
+    
     console.log('before click', this.state.idx);
-    // let updatedArr = this.state.playerArray.push(clickValue);
-    this.setState({ idx: this.state.idx + 1 });
-    // this.setState({ playerArray: updatedArr });
-    console.log('playerArr is', this.state.playerArray);
-    console.log('after click', this.state.idx);
 
-    if (this.state.playerArray[this.state.idx] !== this.state.answerArray[this.state.idx]) {
-      this.setState({ hasWon: false });
+    const newPlayerArray = this.state.playerArray.concat(clickValue);
+    const newIdx = this.state.idx + 1;
+    // let updatedArr = this.state.playerArray.push(clickValue);
+    let newSetStateObject = { idx: newIdx, playerArray: newPlayerArray };
+    // this.setState({ idx: newIdx, playerArray: newPlayerArray });
+    // this.state.playerArray.push(clickValue);
+    console.log('playerArr is', newPlayerArray);
+    // console.log('after click', this.state.idx);
+
+    // if (this.state.playerArray[this.state.idx] !== this.state.answerArray[this.state.idx]) {
+    //   this.setState({ hasWon: false });
+    // }
+    if (newSetStateObject.playerArray[newSetStateObject.idx] !== this.state.answerArray[newSetStateObject.idx]) {
+      newSetStateObject.hasWon = false;
     }
+    console.log('hasWon state', this.state.hasWon);
+    this.setState(newSetStateObject);
 
   }
 
