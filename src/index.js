@@ -1,30 +1,34 @@
 import React , { Component } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import cookie from '../assets/cookie.png';
+import heart from '../assets/heart.png';
+import sword from '../assets/sword.png';
+import gold from '../assets/gold.png';
 
 let rooms = [
   {
     roomName: 'Selection Room 1',
-    message: ['You are in a dark room.', 'Scary, huh?', 'It probably doesn\'t help that you know you\'ll soon encounter a monster.', 'Better pick up one of these items to help you defeat it.'],
+    message: ['You are in a dark room.', 'Scary, huh?', 'It probably doesn\'t help that you know you\'ll soon encounter a monster.', 'Better pick up a weapon.'],
     buttonA: {
       name: 'GOLD',
-      image: '',
+      image: gold,
     },
     buttonB: {
       name: 'COOKIE',
-      image: '',
+      image: cookie,
     }
   },
   {
     roomName: 'Selection Room 2',
-    message: ['Dude.', 'It\'s still dark and still scary.', 'Good thing you freed up your other hand.', 'Choose another item to take with you to the next room.'],
+    message: ['Dude.', 'It\'s still dark and still scary.', 'Good thing you freed up your other hand.', 'Choose another weapon to take with you to the next room.'],
     buttonA: {
       name: 'SWORD',
-      image: '',
+      image: sword,
     },
     buttonB: {
-      name: 'TEDDY BEAR',
-      image: '',
+      name: 'HEART',
+      image: heart,
     }
   },
 ];
@@ -87,11 +91,20 @@ class Room extends Component {
 }
 
 function SelectionBar(props) {
-  console.log('props',props)
   return (
     <div>
-      <button onClick={(e) => props.onSelection(e, props.buttonA)}>{props.buttonA.name}</button>
-      <button onClick={(e) => props.onSelection(e, props.buttonB)}>{props.buttonB.name}</button>
+      <button onClick={(e) => props.onSelection(e, props.buttonA)}>
+        <img 
+          src={props.buttonA.image} 
+          alt={props.buttonA.name}
+        />
+      </button>
+      <button onClick={(e) => props.onSelection(e, props.buttonB)}>
+        <img 
+          src={props.buttonB.image} 
+          alt={props.buttonB.name}
+        />
+      </button>
     </div>
   );
 }
@@ -159,16 +172,15 @@ class GameApp extends React.Component {
       )
     }
 
-    let room = rooms[roomNumber]
-    if (!room) { 
+    let room = rooms[roomNumber];
+    if(roomNumber === roomCount ) { 
       room = {
+        message: this.state.message,
         buttonA: this.state.selections[0],
         buttonB: this.state.selections[1],
       }
     }
 
-    //move selectionbar to room component
-    //pass room, key, onSelection to Room as props
     return (
       <div>
         < Room key={this.state.roomNumber} room={room} onSelection={this.onSelection}/>
