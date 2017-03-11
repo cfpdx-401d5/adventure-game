@@ -1,0 +1,30 @@
+{
+  "name": "adventure-game",
+  "version": "1.0.0",
+  "description": "A text based adventure game built with basic React fundamentals",
+  "main": "index.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cmd-kvn/adventure-game.git"
+  },
+  "author": "Kevin Wong",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cmd-kvn/adventure-game/issues"
+  },
+  "homepage": "https://github.com/cmd-kvn/adventure-game#readme",
+  "devDependencies": {
+    "eslint-plugin-react": "^6.10.0",
+    "react-scripts": "^0.9.3"
+  },
+  "dependencies": {
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
+  }
+}
