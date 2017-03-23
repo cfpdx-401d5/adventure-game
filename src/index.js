@@ -9,30 +9,30 @@ class Game extends Component {
       idx: 0,
       hasWon: true,
       playerArray: [],
-      answerArray: ['A', 'B', 'A', 'Fight Monster'],
+      answerArray: ['after breakfast', 'flowers', 'no', 'Fight ironically'],
       rooms: [
         {
           roomName: 'Room1',
-          message: 'You are in this room1 and your choices are: A || B.',
-          buttonA: 'A',
-          buttonB: 'B'
+          message: 'Little Red Riding Hood, when are you going to grandma\'s house?',
+          buttonA: 'after breakfast',
+          buttonB: 'after lunch'
         },
         {
           roomName: 'Room2',
-          message: 'You are in this room2 and your choices are: A || B.',
-          buttonA: 'A',
-          buttonB: 'B'
+          message: 'Little Red Riding Hood, what will you take for your grandmother?',
+          buttonA: 'vinyl records',
+          buttonB: 'flowers'
         },
         {
           roomName: 'Room3',
-          message: 'You are in this room3 and your choices are: A || B.',
-          buttonA: 'A',
-          buttonB: 'B'
+          message: 'Little Red Riding Hood, you found a typewriter on the path to grandma\'s! Do you take it?',
+          buttonA: 'yes',
+          buttonB: 'no'
         },
         {
           roomName: 'FinalRoom',
-          message: 'Did you win?',
-          buttonA: 'Fight Monster',
+          message: 'OH NO! A HIPSTER WOLF! What do you do?',
+          buttonA: 'Fight ironically',
           buttonB: 'Run away'
         },
       ],
@@ -85,8 +85,8 @@ function MakeRoom(props) {
 function WinOrLosePage(props) {
   let results; 
 
-  if (props.result) results = <p>You win!</p>;
-  else results = <p>You lose :(</p>;
+  if (props.result) results = <p>You made it to grandma's house safely!</p>;
+  else results = <p>Oh no :( It's impossible to be safe from hipster wolves after they've had brunch, smell a vintage record, or have access to a typewriter to finish their taxes. Grandma is so sad you never arrived.</p>;
 
   return results;
 }
