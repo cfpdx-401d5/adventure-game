@@ -2,105 +2,97 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-var userAnswerArr = [];
-var answerArr = ['A', 'B', 'B'];
-var idx = 0;
+class Game extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      idx: 0,
+      hasWon: true,
+      playerArray: [],
+      answerArray: ['after breakfast', 'flowers', 'no', 'Fight ironically'],
+      rooms: [
+        {
+          roomName: 'Room1',
+          message: 'Little Red Riding Hood, when are you going to grandma\'s house?',
+          buttonA: 'after breakfast',
+          buttonB: 'after lunch'
+        },
+        {
+          roomName: 'Room2',
+          message: 'Little Red Riding Hood, what will you take for your grandmother?',
+          buttonA: 'vinyl records',
+          buttonB: 'flowers'
+        },
+        {
+          roomName: 'Room3',
+          message: 'Little Red Riding Hood, you found a typewriter on the path to grandma\'s! Do you take it?',
+          buttonA: 'yes',
+          buttonB: 'no'
+        },
+        {
+          roomName: 'FinalRoom',
+          message: 'OH NO! A HIPSTER WOLF! What do you do?',
+          buttonA: 'Fight ironically',
+          buttonB: 'Run away'
+        },
+      ],
+    };
+    this.clickHandler = this.clickHandler.bind(this);
+  }
 
-const rooms = [
-  {
-    roomName: 'Room1',
-    message: 'You are in this room1 and your choices are: A || B.',
-    buttonA: 'A',
-    buttonB: 'B'
-  },
-  {
-    roomName: 'Room2',
-    message: 'You are in this room2 and your choices are: A || B.',
-    buttonA: 'A',
-    buttonB: 'B'
-  },
-  {
-    roomName: 'Room3',
-    message: 'You are in this room3 and your choices are: A || B.',
-    buttonA: 'A',
-    buttonB: 'B'
-  },
-  {
-    roomName: 'FinalRoom',
-    message: 'Did you win?',
-    buttonA: 'Fight monster',
-    buttonB: 'Run away'
-  },
-];
+  clickHandler(clickValue) {    
+    let newSetStateObject = {};
+
+    const newPlayerArray = this.state.playerArray.concat(clickValue);
+  
+    if (newPlayerArray.length <= this.state.answerArray.length){
+      if (newPlayerArray[this.state.idx] !== this.state.answerArray[this.state.idx]) {
+        newSetStateObject.hasWon = false;
+      }
+    }
+    const newIdx = this.state.idx + 1;
+    newSetStateObject.idx = newIdx;
+    newSetStateObject.playerArray = newPlayerArray;
+    this.setState(newSetStateObject);
+  }
+
+  render() {
+    if (this.state.idx < 4) {
+      // console.log('make room number', this.state.idx);
+      return <MakeRoom clickHandler={this.clickHandler} room={this.state.rooms} index={this.state.idx} />;
+    } else {
+      // console.log('this.state.idx is ', this.state.idx, this.state.hasWon);
+      return <WinOrLosePage result={this.state.hasWon}/>;
+    } 
+  }
+}
 
 function MakeRoom(props) {
-  console.log('idx in mkrom', idx);
+  let clickValue = props.room[props.index];
   return (
     <div>
-      <p>{props.rooms[this.state.idx].message}</p>
-      <Button value={props.room.buttonA} />
-      <Button value={props.room.buttonB} />
+      <p>{props.room[props.index].message}</p>
+      <button onClick={() => {props.clickHandler(clickValue.buttonA);}}> 
+        {clickValue.buttonA}
+      </button>
+      <button onClick={() => {props.clickHandler(clickValue.buttonB);}}>
+        {clickValue.buttonB}
+      </button>
     </div>
   );
 }
 
-function WinOrLose(props) {
-  console.log(props.decision);
-  if (props.decision) {
-    return <p>You win!</p>;
-  }
-  else {
-    return <p>You lose.</p>;
-  }
-}
+function WinOrLosePage(props) {
+  let results; 
 
-class Button extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { hasWon: true };
-    console.log('constructor', this.state.hasWon)
-    this.handleClick = this.handleClick.bind(this);
-  }
+  if (props.result) results = <p>You made it to grandma's house safely!</p>;
+  else results = <p>Oh no :( It's impossible to be safe from hipster wolves after they've had brunch, smell a vintage record, or have access to a typewriter to finish their taxes. Grandma is so sad you never arrived.</p>;
 
-  handleClick(e) {
-    e.preventDefault();
-    
-    userAnswerArr.push(this.props.value);
-    
-    if (userAnswerArr[idx] !== answerArr[idx]) { this.setState({ hasWon: false }) }
-    console.log("userAnsArr", userAnswerArr[idx])
-    console.log("AnsArr", answerArr[idx])
-    console.log(this.state.hasWon)
-    idx++;
-
-
-    if(idx < answerArr.length) {
-      // ReactDOM.render(
-      //   <MakeRoom />,
-      //   document.getElementById('root')
-      // );
-
-    } else if (idx === answerArr.length) {
-      // ReactDOM.render(
-      //   <MakeFinalRoom />,
-      //   document.getElementById('root')
-      // );
-
-    } else {
-      // ReactDOM.render(
-      //   <WinOrLose decision={this.state.hasWon} />,
-      //   document.getElementById('root')
-      // );
-    }
-  };
-
-  render() {
-    return <button onClick={this.handleClick}>Choose {this.props.value}</button>;
-  };
+  return results;
 }
 
 
 ReactDOM.render(
-    <Button rooms={rooms}/>,
-    document.getElementById('root')
-  );
+  <Game />,
+  document.getElementById('root')
+);
