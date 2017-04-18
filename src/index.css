@@ -1,0 +1,34 @@
+body {
+  margin: 20px;
+  padding: 5px;
+  font-family: sans-serif;
+}
+
+.pix {
+  border: 4px solid fuchsia;
+  width: 600px;
+}
+
+.venue-select {
+  margin-left: 120px;
+}
+
+.venue-select button {
+  padding: 5px;
+  margin-right: 10px;
+  font-weight: bold;
+  font-size: 14px;
+  border: 2px solid blue;
+  border-radius: 5px;
+  background: white;
+}
+
+.venue-divs button {
+  padding: 5px;
+  margin-right: 10px;
+  font-weight: bold;
+  font-size: 12px;
+  border: 2px solid red;
+  border-radius: 5px;
+  background: white;
+}
